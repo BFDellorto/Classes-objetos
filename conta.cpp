@@ -55,10 +55,17 @@ class Conta{
         Agencia AG;
         Cliente titular;
         int saldo;
+        static int num_contas;
+
+        Conta();
         void sacar(int gold);
         void depositar(int gold);
         void transferir(int gold, Conta* userY);
 };
+int Conta::num_contas = 0;
+Conta::Conta(){
+        this->num_contas++;
+}
 
 void Conta::sacar(int gold){
         this->saldo -= gold;
@@ -87,6 +94,7 @@ int main(){
         X.depositar(500);
         X.transferir(800, &Y);
 
+        cout << "Numero de contas: " << Conta::num_contas << endl;
         cout << X.AG.getBanco() << " " << X.AG.getNUM() << endl;
         cout << X.titular.getNome() << " " << X.titular.getCPF() << endl;
         cout << "Saldo: " << X.saldo << endl;
